@@ -44,8 +44,8 @@ class TaskBuilder extends StatelessWidget {
 
           const SizedBox(width: 8),
           IconButton(
-            icon: const Icon(Icons.delete_outline, color: Colors.redAccent),
             onPressed: () {},
+            icon: Image.asset("assets/trash.png", height: 30, width: 30),
           ),
         ],
       ),
