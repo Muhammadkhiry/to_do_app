@@ -23,9 +23,17 @@ class HomeView extends StatelessWidget {
           child: const Icon(Icons.add, color: Colors.white),
           onPressed: () {
             showModalBottomSheet(
+              showDragHandle: true,
+              isScrollControlled: true,
               context: context,
               builder: (context) {
-                return AddTaskWidget();
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 16,
+                  ),
+                  child: AddTaskWidget(),
+                );
               },
             );
           },
