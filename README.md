@@ -73,53 +73,60 @@ lib
 ```
 
 ---
-
 # 📱 Application Screens
 
 ## Splash Screen
 
 <p align="center">
-<img src="assets/screenshot/splash_screen.png" width="280">
+  <img src="assets/screenshot/splash_screen.png" width="280">
 </p>
 
 ---
 
-## Login Screen
+## Main Flow
 
 <p align="center">
-<img src="assets/screenshot/login.png" width="280">
+  <img src="assets/screenshot/save_username_view.png" width="280">
+  &nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshot/home_view.png" width="280">
+</p>
+
+<p align="center">
+  <b>Enter Username</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Home Screen</b>
 </p>
 
 ---
 
-## Home Screen
+## Task Management
 
 <p align="center">
-<img src="assets/screenshot/home_view.png" width="280">
+  <img src="assets/screenshot/add_task_view.png" width="280">
+  &nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshot/display_tasks_view.png" width="280">
+</p>
+
+<p align="center">
+  <b>Add Task</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>All Tasks</b>
 </p>
 
 ---
 
-## Task Views
+## Task Status
 
 <p align="center">
-
-<img src="assets/screenshot/display_tasks_view.png" width="260">
-
-<img src="assets/screenshot/display_completed_tasks_view.png" width="260">
-
+  <img src="assets/screenshot/display_completed_tasks_view.png" width="280">
+  &nbsp;&nbsp;&nbsp;
+  <img src="assets/screenshot/alert_dialog_view_deleting.png" width="280">
 </p>
 
----
-
-## Add Task
-
 <p align="center">
-
-<img src="assets/screenshot/add_task_view.png" width="260">
-
-<img src="assets/screenshot/save_username_view.png" width="260">
-
+  <b>Completed Tasks</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Delete Task</b>
 </p>
 
 ---
@@ -127,17 +134,22 @@ lib
 ## Alert Dialogs
 
 <p align="center">
+  <img src="assets/screenshot/alert_dialog_view_adding_task.png" width="260">
+  &nbsp;&nbsp;
+  <img src="assets/screenshot/alert_dialog_view_deleting_task.png" width="260">
+  &nbsp;&nbsp;
+  <img src="assets/screenshot/alert_dialog_view_deleting.png" width="260">
+</p>
 
-<img src="assets/screenshot/alert_dialog_view_adding_task.png" width="250">
-
-<img src="assets/screenshot/alert_dialog_view_deleting_task.png" width="250">
-
-<img src="assets/screenshot/alert_dialog_view_deleting.png" width="250">
-
+<p align="center">
+  <b>Add Task</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Delete Confirmation</b>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Task Deleted</b>
 </p>
 
 ---
-
 # 🛠 Tech Stack
 
 ### Framework
