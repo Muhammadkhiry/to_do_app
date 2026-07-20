@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/models/task_model.dart';
 
 class TaskBuilder extends StatelessWidget {
-  const TaskBuilder({super.key});
+  const TaskBuilder({super.key, required this.taskModel});
+  final TaskModel taskModel;
 
   @override
   Widget build(BuildContext context) {
