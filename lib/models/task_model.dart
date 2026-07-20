@@ -1,7 +1,7 @@
 class TaskModel {
   final String title, id, date;
 
-  final bool isDone;
+  bool isDone;
 
   TaskModel({
     required this.title,

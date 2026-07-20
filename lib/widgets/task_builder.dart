@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/cubits/task_cubit/tasks_cubit.dart';
 import 'package:to_do_app/models/task_model.dart';
+import 'package:to_do_app/widgets/add_task_widget.dart';
 
 class TaskBuilder extends StatelessWidget {
   const TaskBuilder({super.key, required this.taskModel});
@@ -18,8 +21,10 @@ class TaskBuilder extends StatelessWidget {
       child: Row(
         children: [
           Checkbox(
-            value: false,
-            onChanged: (val) {},
+            value: taskModel.isDone,
+            onChanged: (val) {
+              BlocProvider.of<TasksCubit>(context).toggleTaskStatus(taskModel);
+            },
             activeColor: const Color(0xFF00B4D8),
           ),
           const SizedBox(width: 8),
@@ -31,14 +36,19 @@ class TaskBuilder extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Practice Cubit state Management",
+                  taskModel.title,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    fontSize: 15,
+                    fontSize: 17,
                     fontWeight: FontWeight.w600,
                     color: Color(0xFF0F172A),
                   ),
+                ),
+
+                Text(
+                  taskModel.date,
+                  style: TextStyle(color: Colors.grey.shade900, fontSize: 11),
                 ),
               ],
             ),
@@ -131,7 +141,16 @@ class TaskBuilder extends StatelessWidget {
 
                             Expanded(
                               child: TextButton(
-                                onPressed: () => Navigator.pop(context),
+                                onPressed: () {
+                                  BlocProvider.of<TasksCubit>(
+                                    context,
+                                  ).deleteTask(taskModel.id);
+                                  Navigator.pop(context);
+                                  showSuccessDialog(
+                                    context,
+                                    message: 'The task is deleted',
+                                  );
+                                },
                                 style: TextButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 20,

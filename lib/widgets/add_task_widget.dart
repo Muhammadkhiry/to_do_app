@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/cubits/task_cubit/tasks_cubit.dart';
 import 'package:to_do_app/widgets/custom_button.dart';
 import 'package:to_do_app/widgets/custom_text_field.dart';
 
-class AddTaskWidget extends StatelessWidget {
-  AddTaskWidget({super.key});
+class AddTaskWidget extends StatefulWidget {
+  const AddTaskWidget({super.key});
+
+  @override
+  State<AddTaskWidget> createState() => _AddTaskWidgetState();
+}
+
+class _AddTaskWidgetState extends State<AddTaskWidget> {
+  final TextEditingController titleController = TextEditingController();
+
   final TextEditingController dateController = TextEditingController();
 
   @override
@@ -26,7 +36,11 @@ class AddTaskWidget extends StatelessWidget {
             ),
             SizedBox(height: 15),
 
-            CustomTextField(label: "Task Title", icon: "assets/checklist.png"),
+            CustomTextField(
+              label: "Task Title",
+              icon: "assets/checklist.png",
+              controller: titleController,
+            ),
             SizedBox(height: 25),
             CustomTextField(
               label: "Set Date",
@@ -71,10 +85,81 @@ class AddTaskWidget extends StatelessWidget {
             ),
 
             SizedBox(height: 25),
-            CustomButton(label: "Save Task", onPressed: () {}),
+            CustomButton(
+              label: "Save Task",
+              onPressed: () {
+                if (titleController.text.isNotEmpty &&
+                    dateController.text.isNotEmpty) {
+                  BlocProvider.of<TasksCubit>(context).addTask(
+                    title: titleController.text,
+                    date: dateController.text,
+                  );
+                  titleController.clear();
+                  dateController.clear();
+                  Navigator.pop(context);
+                  showSuccessDialog(context, message: 'the task is added');
+                }
+              },
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+void showSuccessDialog(BuildContext context, {required String message}) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (context) {
+      Future.delayed(const Duration(seconds: 2), () {
+        if (context.mounted && Navigator.canPop(context)) {
+          Navigator.pop(context);
+        }
+      });
+
+      return Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        backgroundColor: Colors.white,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                decoration: const BoxDecoration(
+                  color: Color(0xFFE0F7FA),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.check_circle_rounded,
+                  color: Color(0xFF00B4D8),
+                  size: 50,
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              const Text(
+                "Done!",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF0F172A),
+                ),
+              ),
+              const SizedBox(height: 8),
+
+              Text(
+                message,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }

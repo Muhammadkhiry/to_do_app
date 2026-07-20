@@ -8,9 +8,12 @@ class TasksLoading extends TasksStates {}
 
 class TasksSuccess extends TasksStates {
   final List<TaskModel> tasks;
+  final List<TaskModel> completedTasks;
 
-  TasksSuccess({required this.tasks});
+  TasksSuccess({required this.tasks, required this.completedTasks});
 }
+
+class CompletedTask {}
 
 class TasksError extends TasksStates {
   final String message;

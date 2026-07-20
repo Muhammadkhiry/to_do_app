@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/cubits/task_cubit/tasks_cubit.dart';
 import 'package:to_do_app/cubits/task_cubit/tasks_states.dart';
+import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/widgets/add_task_widget.dart';
 import 'package:to_do_app/widgets/no_tasks_widget.dart';
 import 'package:to_do_app/widgets/task_builder.dart';
@@ -138,16 +139,22 @@ class HomeView extends StatelessWidget {
                             fit: StackFit.expand,
                             children: [
                               CircularProgressIndicator(
-                                value: 0.7,
+                                value:
+                                    BlocProvider.of<TasksCubit>(
+                                      context,
+                                    ).completedTasks.length.toDouble() /
+                                    BlocProvider.of<TasksCubit>(
+                                      context,
+                                    ).tasks.length.toDouble(),
                                 strokeWidth: 11,
                                 backgroundColor: Colors.white.withOpacity(0.1),
                                 valueColor: const AlwaysStoppedAnimation<Color>(
                                   Colors.tealAccent,
                                 ),
                               ),
-                              const Center(
+                              Center(
                                 child: Text(
-                                  "7/10",
+                                  "${BlocProvider.of<TasksCubit>(context).completedTasks.length} / ${BlocProvider.of<TasksCubit>(context).tasks.length}",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -185,17 +192,12 @@ class HomeView extends StatelessWidget {
                     Expanded(
                       child: TabBarView(
                         children: [
-                          state.tasks.isEmpty
-                              ? const NoTasksWidget()
-                              : ListView.builder(
-                                  itemCount: state.tasks.length,
-                                  itemBuilder: (context, index) {
-                                    return TaskBuilder(
-                                      taskModel: state.tasks[index],
-                                    );
-                                  },
-                                ),
-                          const NoTasksWidget(),
+                          buildTaskList(
+                            state.tasks,
+                          ), // Tab 1: All / Active Tasks
+                          buildTaskList(
+                            state.completedTasks,
+                          ), // Tab 2: Completed Tasks
                         ],
                       ),
                     )
@@ -209,4 +211,17 @@ class HomeView extends StatelessWidget {
       },
     );
   }
+}
+
+Widget buildTaskList(List<TaskModel> taskList) {
+  if (taskList.isEmpty) {
+    return const NoTasksWidget();
+  }
+  return ListView.builder(
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    itemCount: taskList.length,
+    itemBuilder: (context, index) {
+      return TaskBuilder(taskModel: taskList[index]);
+    },
+  );
 }
