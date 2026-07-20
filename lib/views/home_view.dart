@@ -145,11 +145,14 @@ class HomeView extends StatelessWidget {
                               CircularProgressIndicator(
                                 value:
                                     BlocProvider.of<TasksCubit>(
-                                      context,
-                                    ).completedTasks.length.toDouble() /
+                                          context,
+                                        ).completedTasks.length.toDouble() /
+                                        BlocProvider.of<TasksCubit>(
+                                          context,
+                                        ).completedTasks.length +
                                     BlocProvider.of<TasksCubit>(
                                       context,
-                                    ).tasks.length.toDouble(),
+                                    ).tasks.length,
                                 strokeWidth: 11,
                                 backgroundColor: Colors.white.withOpacity(0.1),
                                 valueColor: const AlwaysStoppedAnimation<Color>(
