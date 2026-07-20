@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/cubits/task_cubit/tasks_cubit.dart';
 import 'package:to_do_app/cubits/task_cubit/tasks_states.dart';
+import 'package:to_do_app/cubits/user_cubit/user_cubit.dart';
 import 'package:to_do_app/models/task_model.dart';
 import 'package:to_do_app/widgets/add_task_widget.dart';
 import 'package:to_do_app/widgets/no_tasks_widget.dart';
@@ -14,10 +15,11 @@ class HomeView extends StatelessWidget {
   final DateTime now = DateTime.now();
   late final DateTime date = DateTime(now.year, now.month, now.day);
   late final String shortMonthName = DateFormat('MMM').format(now);
-  final String userName = "Muhammad!";
 
   @override
   Widget build(BuildContext context) {
+    final String userName = BlocProvider.of<UserCubit>(context).userName;
+
     return BlocBuilder<TasksCubit, TasksStates>(
       builder: (context, state) {
         return DefaultTabController(
@@ -34,9 +36,11 @@ class HomeView extends StatelessWidget {
                   context: context,
                   builder: (context) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 16,
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom,
+                        left: 20,
+                        right: 20,
+                        top: 16,
                       ),
                       child: AddTaskWidget(),
                     );
@@ -154,7 +158,7 @@ class HomeView extends StatelessWidget {
                               ),
                               Center(
                                 child: Text(
-                                  "${BlocProvider.of<TasksCubit>(context).completedTasks.length} / ${BlocProvider.of<TasksCubit>(context).tasks.length}",
+                                  "${BlocProvider.of<TasksCubit>(context).completedTasks.length} / ${BlocProvider.of<TasksCubit>(context).completedTasks.length + BlocProvider.of<TasksCubit>(context).tasks.length}",
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 15,

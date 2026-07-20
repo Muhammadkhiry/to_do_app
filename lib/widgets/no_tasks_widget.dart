@@ -7,26 +7,26 @@ class NoTasksWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          height: 311,
-          width: double.infinity,
-
-          child: Image.asset("assets/undraw_no.png", fit: BoxFit.fill),
-        ),
-        Text(
-          "You have no tasks yet!",
-          style: TextStyle(
-            fontSize: 25,
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+        Expanded(child: Image.asset("assets/undraw_no.png", fit: BoxFit.fill)),
+        Expanded(
+          child: Text(
+            "You have no tasks yet!",
+            style: TextStyle(
+              fontSize: 25,
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-        Text(
-          "Tap + to add your first task",
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.grey,
-            fontWeight: FontWeight.bold,
+        SizedBox(height: 25),
+        Expanded(
+          child: Text(
+            "Tap + to add your first task",
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.grey,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
       ],

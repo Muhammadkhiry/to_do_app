@@ -10,14 +10,11 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xff03A0A7), // لون الخلفية
-        foregroundColor: Colors.white, // لون النص والأيقونات
-        // elevation: 8, // الظل
+        backgroundColor: Color(0xff03A0A7),
+        foregroundColor: Colors.white,
         shadowColor: Colors.black54,
-        minimumSize: const Size(double.infinity, 55), // العرض والارتفاع
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15), // تدوير الحواف
-        ),
+        minimumSize: const Size(double.infinity, 55),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
       child: Center(
         child: SizedBox(

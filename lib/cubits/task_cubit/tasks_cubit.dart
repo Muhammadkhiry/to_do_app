@@ -8,7 +8,7 @@ class TasksCubit extends Cubit<TasksStates> {
   List<TaskModel> tasks = [];
   List<TaskModel> completedTasks = [];
   int _idCounter = 0;
-
+  
   void displayTasks() {
     emit(TasksLoading());
     emit(
